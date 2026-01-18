@@ -126,16 +126,16 @@ watch(() => props.modelValue, (newVal) => {
 .options-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-height: 400px;
+  gap: 10px;
+  max-height: 350px;
   overflow-y: auto;
 }
 
 .option-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px;
+  gap: 8px;
+  padding: 6px;
   background: #f5f5f5;
   border-radius: 8px;
   transition: all 0.2s;
@@ -151,9 +151,30 @@ watch(() => props.modelValue, (newVal) => {
 
 .option-name {
   flex: 1;
+  min-width: 0;
 }
 
 .option-actions {
   flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .options-list {
+    gap: 8px;
+    max-height: 300px;
+  }
+  
+  .option-item {
+    gap: 6px;
+    padding: 4px;
+  }
+  
+  .option-editor :deep(.arco-card) {
+    border-radius: 12px;
+  }
+  
+  .option-editor :deep(.arco-card-body) {
+    padding: 12px;
+  }
 }
 </style>

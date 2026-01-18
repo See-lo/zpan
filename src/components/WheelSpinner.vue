@@ -44,12 +44,12 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   spinning: false,
-  size: 400,
+  size: 320,
   strokeColor: '#ffffff',
   strokeWidth: 0.5,
   textColor: '#ffffff',
-  fontSize: 3,
-  maxTextLength: 8
+  fontSize: 2.8,
+  maxTextLength: 6
 })
 
 const emit = defineEmits<{
@@ -153,7 +153,9 @@ defineExpose({
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 16px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .wheel-wrapper {
@@ -164,15 +166,28 @@ defineExpose({
 
 .wheel-pointer {
   position: absolute;
-  top: -10px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 30px solid #ff6b6b;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 24px solid #ff6b6b;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   z-index: 10;
+}
+
+@media (max-width: 480px) {
+  .wheel-container {
+    padding: 12px;
+    max-width: 320px;
+  }
+  
+  .wheel-pointer {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #ff6b6b;
+  }
 }
 </style>

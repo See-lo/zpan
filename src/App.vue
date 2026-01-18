@@ -153,49 +153,57 @@ onMounted(() => {
 <style scoped>
 .app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px 0;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 16px;
   text-align: center;
 }
 
 .title {
-  font-size: 32px;
+  font-size: 28px;
   font-weight: bold;
   color: #333;
   margin: 0;
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 14px;
   color: #666;
-  margin: 8px 0 0 0;
+  margin: 4px 0 0 0;
 }
 
 .content {
-  padding: 40px 20px;
+  padding: 20px 12px;
   background: rgba(255, 255, 255, 0.5);
+  flex: 1;
 }
 
 .main-container {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 40px;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
   align-items: start;
 }
 
@@ -205,39 +213,88 @@ onMounted(() => {
   align-items: center;
   background: white;
   border-radius: 16px;
-  padding: 40px;
+  padding: 32px 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .editor-section {
   background: white;
   border-radius: 16px;
-  padding: 24px;
+  padding: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .footer {
   text-align: center;
   background: rgba(255, 255, 255, 0.95);
-  padding: 20px;
+  padding: 16px;
   color: #666;
+  font-size: 12px;
 }
 
 .footer p {
   margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .main-container {
     grid-template-columns: 1fr;
-  }
-  
-  .title {
-    font-size: 24px;
+    gap: 16px;
   }
   
   .wheel-section {
-    padding: 20px;
+    order: 1;
+    padding: 20px 12px;
+  }
+  
+  .editor-section {
+    order: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 22px;
+  }
+  
+  .subtitle {
+    font-size: 12px;
+  }
+  
+  .content {
+    padding: 12px 8px;
+  }
+  
+  .wheel-section {
+    padding: 16px 8px;
+  }
+  
+  .editor-section {
+    padding: 12px;
+  }
+  
+  .header {
+    padding: 12px 0;
+  }
+}
+</style>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
   }
 }
 </style>

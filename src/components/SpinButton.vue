@@ -76,35 +76,41 @@ defineExpose({
 .spin-button-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
+  width: 100%;
 }
 
 .spin-button {
-  min-width: 200px;
-  height: 60px;
-  font-size: 20px;
+  min-width: 180px;
+  height: 56px;
+  font-size: 18px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 28px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s;
+}
+
+.spin-button:active {
+  transform: scale(0.98);
 }
 
 .result-content {
   text-align: center;
-  padding: 20px 0;
+  padding: 16px 0;
 }
 
 .result-icon {
-  font-size: 60px;
-  margin-bottom: 16px;
+  font-size: 48px;
+  margin-bottom: 12px;
 }
 
 .result-text {
-  font-size: 18px;
+  font-size: 16px;
   color: #333;
 }
 
 .result-value {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   color: #f53f3f;
   display: block;
@@ -112,6 +118,31 @@ defineExpose({
 }
 
 .result-actions {
-  margin-top: 24px;
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  .spin-button-container {
+    padding: 12px;
+  }
+  
+  .spin-button {
+    min-width: 160px;
+    height: 52px;
+    font-size: 16px;
+    border-radius: 26px;
+  }
+  
+  .result-icon {
+    font-size: 40px;
+  }
+  
+  .result-text {
+    font-size: 14px;
+  }
+  
+  .result-value {
+    font-size: 20px;
+  }
 }
 </style>
