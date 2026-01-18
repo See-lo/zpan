@@ -153,6 +153,16 @@ const handleSpinEnd = (result: string) => {
 }
 
 const resetToDefault = () => {
+  const savedDefault = localStorage.getItem('wheel-default-options')
+  if (savedDefault) {
+    try {
+      options.value = JSON.parse(savedDefault).map((opt: WheelOption) => ({ ...opt, id: generateId() }))
+      saveToLocalStorage()
+      return
+    } catch (e) {
+      // 解析失败，使用系统默认选项
+    }
+  }
   options.value = defaultOptions.map(opt => ({ ...opt, id: generateId() }))
   saveToLocalStorage()
 }
