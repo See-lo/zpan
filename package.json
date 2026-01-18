@@ -1,0 +1,13 @@
+{
+  "name": "lucky-wheel",
+  "version": "1.0.0",
+  "description": "A customizable lucky wheel application",
+  "scripts": {
+    "dev": "npx serve",
+    "build": "echo 'No build step needed for static site'",
+    "preview": "npx serve"
+  },
+  "keywords": ["wheel", "game", "random"],
+  "author": "",
+  "license": "MIT"
+}
