@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>幸运转盘</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>幸运转盘</h1>
-        
-        <div class="wheel-container">
-            <div class="wheel" id="wheel">
-                <div class="wheel-pointer"></div>
-            </div>
-            <button class="spin-btn" id="spinBtn">开始旋转</button>
-        </div>
-
-        <div class="result" id="result"></div>
-
-        <div class="options-panel">
-            <h2>编辑选项</h2>
-            <div class="options-list" id="optionsList"></div>
-            <div class="add-option">
-                <input type="text" id="newOption" placeholder="输入新选项">
-                <button id="addOptionBtn">添加选项</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
