@@ -2,12 +2,21 @@
   <div class="option-editor">
     <a-card title="转盘选项" :bordered="false">
       <template #extra>
-        <a-button type="primary" size="small" @click="addOption">
-          <template #icon>
-            <icon-plus />
-          </template>
-          添加选项
-        </a-button>
+        <a-space>
+          <a-button type="primary" size="small" @click="addOption">
+            <template #icon>
+              <icon-plus />
+            </template>
+            添加选项
+          </a-button>
+          
+          <a-button size="small" @click="saveAsDefault">
+            <template #icon>
+              <icon-save />
+            </template>
+            保存为默认
+          </a-button>
+        </a-space>
       </template>
       
       <div class="options-list">
@@ -60,7 +69,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { IconPlus, IconDelete } from '@arco-design/web-vue/es/icon'
+import { IconPlus, IconDelete, IconSave } from '@arco-design/web-vue/es/icon'
 import type { WheelOption } from '../types'
 
 interface Props {
@@ -71,6 +80,7 @@ const props = defineProps<Props>()
 
 const emit = defineEmits<{
   'update:modelValue': [value: WheelOption[]]
+  'save-as-default': [options: WheelOption[]]
 }>()
 
 const options = ref<WheelOption[]>([...props.modelValue])
@@ -106,6 +116,10 @@ const removeOption = (index: number) => {
 const updateOption = (index: number, field: keyof WheelOption, value: any) => {
   options.value[index][field] = value
   emitUpdate()
+}
+
+const saveAsDefault = () => {
+  emit('save-as-default', [...options.value])
 }
 
 const emitUpdate = () => {
