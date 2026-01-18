@@ -4,7 +4,6 @@
       <a-layout-header class="header">
         <div class="header-content">
           <h1 class="title">🎡 幸运转盘</h1>
-          <p class="subtitle">自定义选项，随机抽取</p>
         </div>
       </a-layout-header>
       
@@ -56,16 +55,12 @@
           </div>
         </div>
       </a-layout-content>
-      
-      <a-layout-footer class="footer">
-        <p>© 2024 幸运转盘 | 使用 Vue 3 + Arco Design 构建</p>
-      </a-layout-footer>
     </a-layout>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { IconRefresh, IconDelete, IconPlus } from '@arco-design/web-vue/es/icon'
 import WheelSpinner from './components/WheelSpinner.vue'
 import OptionEditor from './components/OptionEditor.vue'
@@ -87,14 +82,44 @@ const defaultOptions: WheelOption[] = [
 ]
 
 const presetOptions: WheelOption[] = [
-  { id: 'p1', name: '吃火锅', color: '#FF6B6B' },
-  { id: 'p2', name: '看电影', color: '#4ECDC4' },
-  { id: 'p3', name: '去公园', color: '#45B7D1' },
-  { id: 'p4', name: '打游戏', color: '#96CEB4' },
-  { id: 'p5', name: '看书', color: '#FFEAA7' },
-  { id: 'p6', name: '运动', color: '#DDA0DD' },
-  { id: 'p7', name: '听音乐', color: '#98D8C8' },
-  { id: 'p8', name: '睡觉', color: '#F7DC6F' }
+  { id: 'p1', name: '新疆炒米粉', color: '#FF6B6B' },
+  { id: 'p2', name: '螺蛳粉', color: '#4ECDC4' },
+  { id: 'p3', name: '火鸡面', color: '#45B7D1' },
+  { id: 'p4', name: '新疆拌面', color: '#96CEB4' },
+  { id: 'p5', name: '汉堡', color: '#FFEAA7' },
+  { id: 'p6', name: '炸鸡', color: '#DDA0DD' },
+  { id: 'p7', name: '炒河粉', color: '#98D8C8' },
+  { id: 'p8', name: '鸡蛋发', color: '#F7DC6F' },
+  { id: 'p9', name: '米线', color: '#BB8FCE' },
+  { id: 'p10', name: '冒菜', color: '#85C1E9' },
+  { id: 'p11', name: '一点点', color: '#F8B500' },
+  { id: 'p12', name: '茉莉奶白', color: '#00CED1' },
+  { id: 'p13', name: '霸王茶姬', color: '#FF6B6B' },
+  { id: 'p14', name: '茶颜悦色', color: '#4ECDC4' },
+  { id: 'p15', name: '古茗', color: '#45B7D1' },
+  { id: 'p16', name: '五谷渔粉', color: '#96CEB4' },
+  { id: 'p17', name: '炒饭', color: '#FFEAA7' },
+  { id: 'p18', name: '奶茶', color: '#DDA0DD' },
+  { id: 'p19', name: '蛋糕', color: '#98D8C8' },
+  { id: 'p20', name: '火鸡面', color: '#F7DC6F' },
+  { id: 'p21', name: '意面', color: '#BB8FCE' },
+  { id: 'p22', name: '桥头排骨', color: '#85C1E9' },
+  { id: 'p23', name: '铁板饭', color: '#F8B500' },
+  { id: 'p24', name: '特制面', color: '#00CED1' },
+  { id: 'p25', name: '飘香牛肉面', color: '#FF6B6B' },
+  { id: 'p26', name: '抓饭', color: '#4ECDC4' },
+  { id: 'p27', name: '馄饨', color: '#45B7D1' },
+  { id: 'p28', name: '披萨', color: '#96CEB4' },
+  { id: 'p29', name: '酸辣粉', color: '#FFEAA7' },
+  { id: 'p30', name: '寿司', color: '#DDA0DD' },
+  { id: 'p31', name: '咖喱饭', color: '#98D8C8' },
+  { id: 'p32', name: '瘦肉粥', color: '#F7DC6F' },
+  { id: 'p33', name: '炒沙小肠', color: '#BB8FCE' },
+  { id: 'p34', name: '烧烤', color: '#85C1E9' },
+  { id: 'p35', name: '肯德基', color: '#F8B500' },
+  { id: 'p36', name: '雪王奶', color: '#00CED1' },
+  { id: 'p37', name: '兰州拉面', color: '#FF6B6B' },
+  { id: 'p38', name: '瓦罐汤', color: '#4ECDC4' }
 ]
 
 const generateId = () => {
@@ -148,6 +173,10 @@ const loadFromLocalStorage = () => {
 onMounted(() => {
   loadFromLocalStorage()
 })
+
+watch(options, () => {
+  saveToLocalStorage()
+}, { deep: true })
 </script>
 
 <style scoped>
