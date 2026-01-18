@@ -28,6 +28,20 @@
           <div class="editor-section">
             <OptionEditor v-model="options" />
             
+            <a-card title="快捷选项" :bordered="false" style="margin-top: 16px">
+              <div class="quick-options-container">
+                <div 
+                  v-for="preset in presetOptions" 
+                  :key="preset.id"
+                  class="quick-option-item"
+                  @click="addQuickOption(preset)"
+                >
+                  <div class="quick-option-color" :style="{ backgroundColor: preset.color }"></div>
+                  <div class="quick-option-name">{{ preset.name }}</div>
+                </div>
+              </div>
+            </a-card>
+            
             <a-card title="快捷操作" :bordered="false" style="margin-top: 16px">
               <a-space direction="vertical" :size="12" fill>
                 <a-button long @click="resetToDefault">
@@ -153,6 +167,16 @@ const addPresetOptions = () => {
   saveToLocalStorage()
 }
 
+const addQuickOption = (preset: WheelOption) => {
+  const newOption: WheelOption = {
+    id: generateId(),
+    name: preset.name,
+    color: preset.color
+  }
+  options.value.push(newOption)
+  saveToLocalStorage()
+}
+
 const saveToLocalStorage = () => {
   localStorage.setItem('wheel-options', JSON.stringify(options.value))
 }
@@ -253,6 +277,55 @@ watch(options, () => {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+.quick-options-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 8px;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.quick-option-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px;
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.quick-option-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #165dff;
+}
+
+.quick-option-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-bottom: 6px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quick-option-name {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
 .footer {
   text-align: center;
   background: rgba(255, 255, 255, 0.95);
@@ -304,6 +377,14 @@ watch(options, () => {
   
   .header {
     padding: 12px 0;
+  }
+  
+  .quick-options-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .quick-option-name {
+    font-size: 12px;
   }
 }
 </style>
